@@ -34,3 +34,9 @@
   - 숫자가 아닌 경우
   - 숫자 범위가 1~45가 아닌 경우
   - 당첨 번호와 중복되는 경우
+
+## 도메인
+### 1. Lotto
+### 2. PurchaseAmount
+### 3.
+### 2. Winning Combination
