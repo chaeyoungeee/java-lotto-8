@@ -1,14 +1,11 @@
 package lotto.controller;
 
 import java.util.List;
-import java.util.Map;
 import lotto.domain.Lotto;
 import lotto.util.LottoFactory;
 import lotto.domain.PurchaseAmount;
 import lotto.domain.WinningCombination;
-import lotto.domain.enums.LottoPrize;
 import lotto.dto.LottoResultDto;
-import lotto.dto.MatchCountDto;
 import lotto.service.LottoService;
 import lotto.strategy.RandomNumbersGenerator;
 import lotto.view.InputView;
@@ -28,10 +25,12 @@ public class LottoController {
 
     public void run() {
         LottoService lottoService = new LottoService(randomNumbersGenerator);
+
         PurchaseAmount purchaseAmount = LottoFactory.createPurchaseAmount(inputView, outputView);
         List<Lotto> lottos = generateLottos(lottoService, purchaseAmount);
         WinningCombination winningCombination = LottoFactory.createWinningCombination(inputView, outputView);
-        calculateResult(lottoService, lottos, winningCombination, purchaseAmount);
+        LottoResultDto results = calculateResult(lottoService, lottos, winningCombination, purchaseAmount);
+        calculateReturnRate(lottoService, purchaseAmount, results);
     }
 
     private List<Lotto> generateLottos(LottoService lottoService, PurchaseAmount purchaseAmount) {
@@ -40,11 +39,13 @@ public class LottoController {
         return lottos;
     }
 
-    private void calculateResult(LottoService lottoService, List<Lotto> lottos, WinningCombination winningCombination, PurchaseAmount purchaseAmount) {
-        List<MatchCountDto> matchCounts = lottoService.evaluateLottos(lottos, winningCombination);
-        LottoResultDto results = lottoService.getLottoResults(matchCounts);
-        Map<LottoPrize, Integer> prizeCountMap = results.getPrizeCountMap();
-        outputView.printResult(prizeCountMap);
+    private LottoResultDto calculateResult(LottoService lottoService, List<Lotto> lottos, WinningCombination winningCombination, PurchaseAmount purchaseAmount) {
+        LottoResultDto results = lottoService.calculateLottoResults(lottos, winningCombination);
+        outputView.printResult(results.getPrizeCountMap());
+        return results;
+    }
+
+    private void calculateReturnRate(LottoService lottoService, PurchaseAmount purchaseAmount, LottoResultDto results) {
         double returnRate = lottoService.calculateReturnRate(results, purchaseAmount);
         outputView.printReturnRate(returnRate);
     }

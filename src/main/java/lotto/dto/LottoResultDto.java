@@ -1,39 +1,28 @@
 package lotto.dto;
 
-import static java.util.stream.Collectors.*;
-import static lotto.domain.enums.LottoPrize.NONE;
-
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Function;
 import lotto.domain.enums.LottoPrize;
 
 public class LottoResultDto {
 
-    private List<LottoPrize> results;
+    private final EnumMap<LottoPrize, Integer> prizeCountMap = new EnumMap<>(LottoPrize.class);
 
-    public LottoResultDto(List<MatchCountDto> matchCounts) {
-        results = matchCounts.stream()
-            .map(MatchCountDto::toLottoPrize)
-            .filter(prize -> prize != NONE)
-            .toList();
-    }
-
-    public List<LottoPrize> getResults() {
-        return results;
-    }
-
-    public Map<LottoPrize, Integer> getPrizeCountMap() {
-        return results.stream()
-            .collect(
-                groupingBy(Function.identity(), summingInt(prize -> 1))
-            );
+    public LottoResultDto(List<LottoPrize> prizes) {
+        Arrays.stream(LottoPrize.values()).forEach(prize -> prizeCountMap.put(prize, 0));
+        prizes.forEach(prize -> prizeCountMap.put(prize, prizeCountMap.get(prize) + 1));
     }
 
     public int getTotalAmount() {
-        return getPrizeCountMap().entrySet()
-            .stream()
-            .mapToInt(e -> e.getKey().getAmount() * e.getValue())
-            .sum();
+        return prizeCountMap.entrySet().stream()
+                .mapToInt(e -> e.getKey().getAmount() * e.getValue())
+                .sum();
+    }
+
+    public Map<LottoPrize, Integer> getPrizeCountMap() {
+        return Collections.unmodifiableMap(prizeCountMap);
     }
 }

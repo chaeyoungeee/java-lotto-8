@@ -2,11 +2,12 @@ package lotto.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import lotto.domain.Lotto;
 import lotto.domain.PurchaseAmount;
 import lotto.domain.WinningCombination;
+import lotto.domain.enums.LottoPrize;
 import lotto.dto.LottoResultDto;
-import lotto.dto.MatchCountDto;
 import lotto.strategy.RandomNumbersGenerator;
 
 public class LottoService {
@@ -26,14 +27,18 @@ public class LottoService {
         return lottos;
     }
 
-    public List<MatchCountDto> evaluateLottos(List<Lotto> lottos, WinningCombination winningCombination) {
-        return lottos.stream()
-                .map(lotto -> lotto.getResult(winningCombination))
-                .toList();
+    public LottoResultDto calculateLottoResults(List<Lotto> lottos, WinningCombination winningCombination) {
+        List<LottoPrize> prizes = getLottoPrizes(lottos, winningCombination);
+        return new LottoResultDto(prizes);
     }
 
-    public LottoResultDto getLottoResults(List<MatchCountDto> matchCounts) {
-        return new LottoResultDto(matchCounts);
+    private List<LottoPrize> getLottoPrizes(List<Lotto> lottos, WinningCombination winningCombination) {
+        return lottos.stream()
+                .map(lotto -> {
+                    return lotto.getPrize(winningCombination);
+                })
+                .filter(Objects::nonNull)
+                .toList();
     }
 
     public double calculateReturnRate(LottoResultDto results, PurchaseAmount purchaseAmount) {

@@ -9,7 +9,7 @@ import static lotto.util.LottoConstants.LOTTO_NUMBER_MIN;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
-import lotto.dto.MatchCountDto;
+import lotto.domain.enums.LottoPrize;
 
 public class Lotto {
 
@@ -70,9 +70,9 @@ public class Lotto {
         return contains(bonusNumber.getValue());
     }
 
-    public MatchCountDto getResult(WinningCombination winningCombination) {
+    public LottoPrize getPrize(WinningCombination winningCombination) {
         int matchCount = countMatchingNumber(winningCombination.getWinningNumbers());
         boolean isBonusMatched = isBonusMatched(winningCombination.getBonusNumber());
-        return new MatchCountDto(matchCount, isBonusMatched);
+        return LottoPrize.of(matchCount, isBonusMatched);
     }
 }
