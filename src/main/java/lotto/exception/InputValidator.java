@@ -4,8 +4,6 @@ import static lotto.exception.InputErrorCode.BLANK_INPUT;
 import static lotto.exception.InputErrorCode.NON_NUMERIC_INPUT;
 import static lotto.util.InputConstants.WINNING_NUMBERS_DELIMITER;
 
-import lotto.util.InputConstants;
-
 public class InputValidator {
 
     public static void validatePurchaseAmount(String input) {

@@ -1,6 +1,10 @@
-package lotto.domain;
+package lotto.util;
 
 import java.util.List;
+import lotto.domain.BonusNumber;
+import lotto.domain.Lotto;
+import lotto.domain.PurchaseAmount;
+import lotto.domain.WinningCombination;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
