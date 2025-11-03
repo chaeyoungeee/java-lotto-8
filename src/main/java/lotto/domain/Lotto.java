@@ -3,6 +3,7 @@ package lotto.domain;
 import static lotto.exception.InputErrorCode.INVALID_LOTTO_NUMBER;
 import static lotto.exception.InputErrorCode.INVALID_LOTTO_NUMBERS_COUNT;
 import static lotto.util.LottoConstants.LOTTO_NUMBERS_COUNT;
+import static lotto.util.LottoConstants.LOTTO_NUMBER_MAX;
 import static lotto.util.LottoConstants.LOTTO_NUMBER_MIN;
 
 import java.util.Collections;
@@ -36,7 +37,7 @@ public class Lotto {
 
     private static void validateNumberRange(List<Integer> numbers) {
         for (Integer number : numbers) {
-            if (number < LOTTO_NUMBER_MIN || number > LOTTO_NUMBERS_COUNT) {
+            if (number < LOTTO_NUMBER_MIN || number > LOTTO_NUMBER_MAX) {
                 throw new IllegalArgumentException(INVALID_LOTTO_NUMBER.getMessage());
             }
         }

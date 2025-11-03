@@ -1,7 +1,7 @@
 package lotto.domain;
 
 import static lotto.exception.InputErrorCode.INVALID_LOTTO_NUMBER;
-import static lotto.util.LottoConstants.LOTTO_NUMBERS_COUNT;
+import static lotto.util.LottoConstants.LOTTO_NUMBER_MAX;
 import static lotto.util.LottoConstants.LOTTO_NUMBER_MIN;
 
 public class BonusNumber {
@@ -17,7 +17,7 @@ public class BonusNumber {
     }
 
     private static void validateNumberRange(Integer value) {
-        if (value < LOTTO_NUMBER_MIN || value > LOTTO_NUMBERS_COUNT) {
+        if (value < LOTTO_NUMBER_MIN || value > LOTTO_NUMBER_MAX) {
             throw new IllegalArgumentException(INVALID_LOTTO_NUMBER.getMessage());
         }
     }

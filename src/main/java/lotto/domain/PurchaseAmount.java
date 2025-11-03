@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import static lotto.exception.InputErrorCode.INVALID_PURCHASE_AMOUNT;
+import static lotto.util.LottoConstants.LOTTO_UNIT_PRICE;
 
 public class PurchaseAmount {
 
@@ -20,7 +21,7 @@ public class PurchaseAmount {
     }
 
     private static void validateMultipleOfThousand(int value) {
-        if (value < 1000 || value % 1000 != 0) {
+        if (value < LOTTO_UNIT_PRICE || value % LOTTO_UNIT_PRICE != 0) {
             throw new IllegalArgumentException(INVALID_PURCHASE_AMOUNT.getMessage());
         }
     }
