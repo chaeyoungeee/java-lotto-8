@@ -1,13 +1,10 @@
 package lotto.domain;
 
-import static lotto.exception.InputErrorCode.INVALID_PURCHASE_AMOUNT;
-import static lotto.exception.InputErrorCode.NON_NUMERIC_INPUT;
+import static lotto.exception.ErrorCode.INVALID_PURCHASE_AMOUNT;
 import static lotto.util.LottoConstants.LOTTO_UNIT_PRICE;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 
-import lotto.exception.InputErrorCode;
-import lotto.util.LottoConstants;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;

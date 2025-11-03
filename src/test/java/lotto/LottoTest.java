@@ -1,15 +1,12 @@
 package lotto;
 
 import lotto.domain.Lotto;
-import lotto.exception.InputErrorCode;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 
-import static lotto.exception.InputErrorCode.INVALID_LOTTO_NUMBER;
+import static lotto.exception.ErrorCode.INVALID_LOTTO_NUMBER;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {

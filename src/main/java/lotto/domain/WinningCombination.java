@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import lotto.exception.InputErrorCode;
+import lotto.exception.ErrorCode;
 
 public class WinningCombination {
 
@@ -23,7 +23,7 @@ public class WinningCombination {
 
     private static void validateNumberDuplication(Lotto lotto, BonusNumber bonusNumber) {
         if (lotto.contains(bonusNumber.getValue())) {
-            throw new IllegalArgumentException(InputErrorCode.DUPLICATE_BONUS_NUMBER.getMessage());
+            throw new IllegalArgumentException(ErrorCode.DUPLICATE_BONUS_NUMBER.getMessage());
         }
     }
 

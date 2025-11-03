@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import static lotto.exception.InputErrorCode.INVALID_PURCHASE_AMOUNT;
+import static lotto.exception.ErrorCode.INVALID_PURCHASE_AMOUNT;
 import static lotto.util.LottoConstants.LOTTO_UNIT_PRICE;
 
 public class PurchaseAmount {

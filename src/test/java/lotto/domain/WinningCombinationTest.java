@@ -1,11 +1,10 @@
 package lotto.domain;
 
-import static lotto.exception.InputErrorCode.DUPLICATE_BONUS_NUMBER;
+import static lotto.exception.ErrorCode.DUPLICATE_BONUS_NUMBER;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
-import lotto.exception.InputErrorCode;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

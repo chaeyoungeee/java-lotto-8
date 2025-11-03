@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import static lotto.exception.InputErrorCode.INVALID_LOTTO_NUMBER;
+import static lotto.exception.ErrorCode.INVALID_LOTTO_NUMBER;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;

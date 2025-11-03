@@ -1,7 +1,7 @@
 package lotto.exception;
 
-import static lotto.exception.InputErrorCode.BLANK_INPUT;
-import static lotto.exception.InputErrorCode.NON_NUMERIC_INPUT;
+import static lotto.exception.ErrorCode.BLANK_INPUT;
+import static lotto.exception.ErrorCode.NON_NUMERIC_INPUT;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;

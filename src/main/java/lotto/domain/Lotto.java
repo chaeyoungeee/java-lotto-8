@@ -1,7 +1,7 @@
 package lotto.domain;
 
-import static lotto.exception.InputErrorCode.INVALID_LOTTO_NUMBER;
-import static lotto.exception.InputErrorCode.INVALID_LOTTO_NUMBERS_COUNT;
+import static lotto.exception.ErrorCode.INVALID_LOTTO_NUMBER;
+import static lotto.exception.ErrorCode.INVALID_LOTTO_NUMBERS_COUNT;
 import static lotto.util.LottoConstants.LOTTO_NUMBERS_COUNT;
 import static lotto.util.LottoConstants.LOTTO_NUMBER_MAX;
 import static lotto.util.LottoConstants.LOTTO_NUMBER_MIN;
