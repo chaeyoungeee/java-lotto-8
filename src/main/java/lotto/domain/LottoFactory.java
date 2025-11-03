@@ -17,7 +17,12 @@ public class LottoFactory {
         }
     }
 
-    public static Lotto createWinningNumbers(InputView inputView, OutputView outputView) {
+    public static WinningCombination createWinningCombination(InputView inputView, OutputView outputView) {
+        Lotto winningNumbers = getWinningNumbers(inputView, outputView);
+        return getWinningCombination(inputView, outputView, winningNumbers);
+    }
+
+    private static Lotto getWinningNumbers(InputView inputView, OutputView outputView) {
         while (true) {
             try {
                 List<Integer> numbers = inputView.inputWinningNumbers();
@@ -28,11 +33,12 @@ public class LottoFactory {
         }
     }
 
-    public static BonusNumber createBonusNumber(InputView inputView, OutputView outputView) {
+    private static WinningCombination getWinningCombination(InputView inputView, OutputView outputView, Lotto winningNumbers) {
         while (true) {
             try {
-                int value = inputView.inputBonusNumber();
-                return BonusNumber.of(value);
+                Integer value = inputView.inputBonusNumber();
+                BonusNumber bonusNumber = BonusNumber.of(value);
+                return WinningCombination.of(winningNumbers, bonusNumber);
             } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(e.getMessage());
             }

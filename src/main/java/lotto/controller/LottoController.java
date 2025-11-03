@@ -10,6 +10,7 @@ public class LottoController {
 
     private final InputView inputView;
     private final OutputView outputView;
+    private final LottoService lottoService = new LottoService();
 
     public LottoController(InputView inputView, OutputView outputView) {
         this.inputView = new InputView();
@@ -19,8 +20,7 @@ public class LottoController {
     public void start() {
         LottoGame lottoGame = new LottoGame(
                 LottoFactory.createPurchaseAmount(inputView, outputView),
-                LottoFactory.createWinningNumbers(inputView, outputView),
-                LottoFactory.createBonusNumber(inputView, outputView)
+                LottoFactory.createWinningCombination(inputView, outputView)
         );
     }
 }

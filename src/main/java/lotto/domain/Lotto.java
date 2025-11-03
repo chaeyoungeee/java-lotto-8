@@ -1,11 +1,16 @@
 package lotto.domain;
 
 import static lotto.exception.InputErrorCode.INVALID_LOTTO_NUMBER;
+import static lotto.exception.InputErrorCode.INVALID_LOTTO_NUMBERS_COUNT;
+import static lotto.util.LottoConstants.LOTTO_NUMBERS_COUNT;
+import static lotto.util.LottoConstants.LOTTO_NUMBER_MIN;
 
+import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
-import lotto.exception.InputErrorCode;
 
 public class Lotto {
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -18,10 +23,33 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        validateNumbersCount(numbers);
+        validateNumberRange(numbers);
+        validateNumberDuplication(numbers);
+    }
+
+    private static void validateNumbersCount(List<Integer> numbers) {
+        if (numbers.size() != LOTTO_NUMBERS_COUNT) {
+            throw new IllegalArgumentException(INVALID_LOTTO_NUMBERS_COUNT.getMessage());
+        }
+    }
+
+    private static void validateNumberRange(List<Integer> numbers) {
+        for (Integer number : numbers) {
+            if (number < LOTTO_NUMBER_MIN || number > LOTTO_NUMBERS_COUNT) {
+                throw new IllegalArgumentException(INVALID_LOTTO_NUMBER.getMessage());
+            }
+        }
+    }
+
+    private static void validateNumberDuplication(List<Integer> numbers) {
+        long distinctCount = numbers.stream().distinct().count();
+        if (distinctCount != LOTTO_NUMBERS_COUNT) {
             throw new IllegalArgumentException(INVALID_LOTTO_NUMBER.getMessage());
         }
     }
 
-    // TODO: 추가 기능 구현
+    public boolean contains(Integer number) {
+        return numbers.contains(number);
+    }
 }

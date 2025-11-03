@@ -3,24 +3,18 @@ package lotto.domain;
 public class LottoGame {
 
     private final PurchaseAmount purchaseAmount;
-    private final Lotto winningNumbers;
-    private final BonusNumber bonusNumber;
+    private final WinningCombination winningCombination;
 
-    public LottoGame(PurchaseAmount purchaseAmount, Lotto winningNumbers, BonusNumber bonusNumber) {
+    public LottoGame(PurchaseAmount purchaseAmount, WinningCombination winningCombination) {
         this.purchaseAmount = purchaseAmount;
-        this.winningNumbers = winningNumbers;
-        this.bonusNumber = bonusNumber;
+        this.winningCombination = winningCombination;
     }
 
     public PurchaseAmount getPurchaseAmount() {
         return purchaseAmount;
     }
 
-    public Lotto getWinningNumbers() {
-        return winningNumbers;
-    }
-
-    public BonusNumber getBonusNumber() {
-        return bonusNumber;
+    public WinningCombination getWinningCombination() {
+        return winningCombination;
     }
 }

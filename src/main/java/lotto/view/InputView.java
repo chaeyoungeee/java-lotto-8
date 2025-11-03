@@ -16,7 +16,7 @@ public class InputView {
         return Console.readLine();
     }
 
-    public int inputPurchaseAmount() {
+    public Integer inputPurchaseAmount() {
         System.out.println(INPUT_PURCHASE_AMOUNT_MESSAGE);
         String input = readInput();
         InputValidator.validatePurchaseAmount(input);
@@ -33,7 +33,7 @@ public class InputView {
                 .toList();
     }
 
-    public int inputBonusNumber() {
+    public Integer inputBonusNumber() {
         System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
         String input = readInput();
         InputValidator.validateBonusNumber(input);
