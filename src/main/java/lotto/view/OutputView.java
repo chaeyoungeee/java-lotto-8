@@ -1,6 +1,5 @@
 package lotto.view;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import lotto.domain.enums.LottoPrize;
@@ -10,7 +9,7 @@ public class OutputView {
     private final String PURCHASE_RESULT_MESSAGE = "%d개를 구매했습니다.";
     private final String RESULT_MESSAGE = "당첨 통계\n---";
     private final String RESULT_MATCH_COUNT_MESSAGE = "%d개 일치";
-    private final String RESULT_IS_BONUS_MATCH_MESSAGE = ", 보너스 볼 일치";
+    private final String RESULT_BONUS_MATCH_MESSAGE = ", 보너스 볼 일치";
     private final String RESULT_AMOUNT_MESSAGE = " (%,d원) - %d개\n";
     private final String RETURN_RATE_MESSAGE = "총 수익률은 %.1f%%입니다.";
 
@@ -24,13 +23,10 @@ public class OutputView {
 
     public void printResult(Map<LottoPrize, Integer> results) {
         System.out.println(RESULT_MESSAGE);
-        Arrays.stream(LottoPrize.values())
-            .filter(prize -> prize != LottoPrize.NONE)
-            .forEach(prize -> {
-                int count = results.getOrDefault(prize, 0);
+        results.forEach((prize, count) -> {
                 System.out.printf(RESULT_MATCH_COUNT_MESSAGE, prize.getMatchCount());
                 if (prize.isBonusMatch()) {
-                    System.out.print(RESULT_IS_BONUS_MATCH_MESSAGE);
+                    System.out.print(RESULT_BONUS_MATCH_MESSAGE);
                 }
                 System.out.printf(RESULT_AMOUNT_MESSAGE, prize.getAmount(), count);
             });

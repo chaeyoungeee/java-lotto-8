@@ -6,28 +6,28 @@ import static lotto.util.LottoConstants.LOTTO_NUMBER_MIN;
 
 public class BonusNumber {
 
-    private final Integer value;
+    private final int value;
 
-    private BonusNumber(Integer value) {
+    private BonusNumber(int value) {
         validate(value);
         this.value = value;
     }
 
-    public static BonusNumber of(Integer value) {
+    public static BonusNumber of(int value) {
         return new BonusNumber(value);
     }
 
-    public static void validate(Integer value) {
+    public static void validate(int value) {
         validateNumberRange(value);
     }
 
-    private static void validateNumberRange(Integer value) {
+    private static void validateNumberRange(int value) {
         if (value < LOTTO_NUMBER_MIN || value > LOTTO_NUMBER_MAX) {
             throw new IllegalArgumentException(INVALID_LOTTO_NUMBER.getMessage());
         }
     }
 
-    public Integer getValue() {
+    public int getValue() {
         return value;
     }
 }
