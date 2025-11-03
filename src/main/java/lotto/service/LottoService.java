@@ -37,4 +37,8 @@ public class LottoService {
     public LottoResultDto getLottoResults(List<MatchCountDto> matchCounts) {
         return new LottoResultDto(matchCounts);
     }
+
+    public double calculateReturnRate(LottoResultDto results, PurchaseAmount purchaseAmount) {
+        return (double) results.getTotalAmount() / purchaseAmount.getValue();
+    }
 }

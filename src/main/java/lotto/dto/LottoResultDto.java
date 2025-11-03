@@ -29,4 +29,10 @@ public class LottoResultDto {
                 groupingBy(Function.identity(), summingInt(prize -> 1))
             );
     }
+
+    public int getTotalAmount() {
+        return results.stream()
+            .mapToInt(LottoPrize::getAmount)
+            .sum();
+    }
 }
