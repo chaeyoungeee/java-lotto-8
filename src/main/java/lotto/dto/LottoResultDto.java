@@ -31,8 +31,9 @@ public class LottoResultDto {
     }
 
     public int getTotalAmount() {
-        return results.stream()
-            .mapToInt(LottoPrize::getAmount)
+        return getPrizeCountMap().entrySet()
+            .stream()
+            .mapToInt(e -> e.getKey().getAmount() * e.getValue())
             .sum();
     }
 }

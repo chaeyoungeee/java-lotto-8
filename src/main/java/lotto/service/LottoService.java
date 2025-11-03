@@ -39,6 +39,6 @@ public class LottoService {
     }
 
     public double calculateReturnRate(LottoResultDto results, PurchaseAmount purchaseAmount) {
-        return (double) results.getTotalAmount() / purchaseAmount.getValue();
+        return ((double) results.getTotalAmount() / purchaseAmount.getValue()) * 100;
     }
 }

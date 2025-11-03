@@ -12,7 +12,7 @@ public class OutputView {
     private final String RESULT_MATCH_COUNT_MESSAGE = "%d개 일치";
     private final String RESULT_IS_BONUS_MATCH_MESSAGE = ", 보너스 볼 일치";
     private final String RESULT_AMOUNT_MESSAGE = " (%,d원) - %d개\n";
-    private final String RETURN_RATE_MESSAGE = "총 수익률은 %.2f%%입니다.";
+    private final String RETURN_RATE_MESSAGE = "총 수익률은 %.1f%%입니다.";
 
 
     public void printPurchaseResult(int count, List<List<Integer>> lottos) {
@@ -23,7 +23,6 @@ public class OutputView {
     }
 
     public void printResult(Map<LottoPrize, Integer> results) {
-//       5개 일치, 보너스 볼 일치 (30,000,000원) - 0개
         System.out.println(RESULT_MESSAGE);
         Arrays.stream(LottoPrize.values())
             .filter(prize -> prize != LottoPrize.NONE)
