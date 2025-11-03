@@ -16,7 +16,7 @@ public class InputValidator {
         validateSeperatedNumericToken(input);
     }
 
-    private static void validateSeperatedNumericToken(String input) {
+    public static void validateSeperatedNumericToken(String input) {
         String[] numbers = input.split(WINNING_NUMBERS_DELIMITER);
         for (String number : numbers) {
             validateNumber(number);
@@ -34,7 +34,7 @@ public class InputValidator {
         }
     }
 
-    private static void validateNumber(String value) {
+    public static void validateNumber(String value) {
         if (!value.matches("\\d+")) {
             throw new IllegalArgumentException(NON_NUMERIC_INPUT.getMessage());
         }
