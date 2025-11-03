@@ -37,7 +37,7 @@ public class OutputView {
     }
 
     public void printReturnRate(double rate) {
-        System.out.printf(RETURN_RATE_MESSAGE + "\n", rate);
+        System.out.printf(RETURN_RATE_MESSAGE, rate);
     }
 
     public void printErrorMessage(String message) {
