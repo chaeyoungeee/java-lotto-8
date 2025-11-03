@@ -9,11 +9,16 @@ public class BonusNumber {
     private final Integer value;
 
     private BonusNumber(Integer value) {
+        validate(value);
         this.value = value;
     }
 
     public static BonusNumber of(Integer value) {
         return new BonusNumber(value);
+    }
+
+    public static void validate(Integer value) {
+        validateNumberRange(value);
     }
 
     private static void validateNumberRange(Integer value) {
