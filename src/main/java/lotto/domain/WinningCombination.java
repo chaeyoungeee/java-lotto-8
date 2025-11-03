@@ -26,4 +26,12 @@ public class WinningCombination {
             throw new IllegalArgumentException(InputErrorCode.DUPLICATE_BONUS_NUMBER.getMessage());
         }
     }
+
+    public Lotto getWinningNumbers() {
+        return winningNumbers;
+    }
+
+    public BonusNumber getBonusNumber() {
+        return bonusNumber;
+    }
 }

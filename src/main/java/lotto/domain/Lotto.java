@@ -7,8 +7,9 @@ import static lotto.util.LottoConstants.LOTTO_NUMBER_MAX;
 import static lotto.util.LottoConstants.LOTTO_NUMBER_MIN;
 
 import java.util.Collections;
-import java.util.Iterator;
+import java.util.HashSet;
 import java.util.List;
+import lotto.dto.MatchCountDto;
 
 public class Lotto {
 
@@ -52,5 +53,26 @@ public class Lotto {
 
     public boolean contains(Integer number) {
         return numbers.contains(number);
+    }
+
+    public List<Integer> getNumbers() {
+        return Collections.unmodifiableList(numbers);
+    }
+
+    public int countMatchingNumber(Lotto winningNumbers) {
+        HashSet<Integer> numbersSet = new HashSet<>(numbers);
+        HashSet<Integer> winningNumbersSet = new HashSet<>(winningNumbers.getNumbers());
+        numbersSet.retainAll(winningNumbersSet);
+        return numbersSet.size();
+    }
+
+    public boolean isBonusMatched(BonusNumber bonusNumber) {
+        return contains(bonusNumber.getValue());
+    }
+
+    public MatchCountDto getResult(WinningCombination winningCombination) {
+        int matchCount = countMatchingNumber(winningCombination.getWinningNumbers());
+        boolean isBonusMatched = isBonusMatched(winningCombination.getBonusNumber());
+        return new MatchCountDto(matchCount, isBonusMatched);
     }
 }

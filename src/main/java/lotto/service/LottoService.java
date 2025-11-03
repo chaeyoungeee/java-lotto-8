@@ -1,11 +1,13 @@
 package lotto.service;
 
-import static lotto.util.LottoConstants.LOTTO_UNIT_PRICE;
-
 import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.PurchaseAmount;
+import lotto.domain.WinningCombination;
+import lotto.domain.enums.LottoPrize;
+import lotto.dto.LottoResultDto;
+import lotto.dto.MatchCountDto;
 import lotto.util.RandomLottoNumberGenerator;
 
 public class LottoService {
@@ -24,5 +26,15 @@ public class LottoService {
             lottos.add(Lotto.from(lotto));
         }
         return lottos;
+    }
+
+    public List<MatchCountDto> evaluateLottos(List<Lotto> lottos, WinningCombination winningCombination) {
+        return lottos.stream()
+                .map(lotto -> lotto.getResult(winningCombination))
+                .toList();
+    }
+
+    public LottoResultDto getLottoResults(List<MatchCountDto> matchCounts) {
+        return new LottoResultDto(matchCounts);
     }
 }
