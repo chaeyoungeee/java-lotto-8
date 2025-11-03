@@ -5,25 +5,23 @@ import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.PurchaseAmount;
 import lotto.domain.WinningCombination;
-import lotto.domain.enums.LottoPrize;
 import lotto.dto.LottoResultDto;
 import lotto.dto.MatchCountDto;
-import lotto.util.RandomLottoNumberGenerator;
+import lotto.strategy.RandomNumbersGenerator;
 
 public class LottoService {
 
-    private final RandomLottoNumberGenerator randomLottoNumberGenerator;
+    private final RandomNumbersGenerator randomNumbersGenerator;
 
-    public LottoService(RandomLottoNumberGenerator randomLottoNumberGenerator) {
-        this.randomLottoNumberGenerator = randomLottoNumberGenerator;
+    public LottoService(RandomNumbersGenerator randomNumbersGenerator) {
+        this.randomNumbersGenerator = randomNumbersGenerator;
     }
 
     public List<Lotto> generateLottos(PurchaseAmount purchaseAmount) {
         List<Lotto> lottos = new ArrayList<>();
         int lottoCount = purchaseAmount.getLottoCount();
         while (lottos.size() < lottoCount) {
-            List<Integer> lotto = randomLottoNumberGenerator.generateUniqueNumbers();
-            lottos.add(Lotto.from(lotto));
+            lottos.add(Lotto.from(new ArrayList<>(randomNumbersGenerator.generateNumbers())));
         }
         return lottos;
     }
