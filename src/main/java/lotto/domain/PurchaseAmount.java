@@ -24,4 +24,12 @@ public class PurchaseAmount {
             throw new IllegalArgumentException(INVALID_PURCHASE_AMOUNT.getMessage());
         }
     }
+
+    public int getValue() {
+        return value;
+    }
+
+    public int getLottoCount() {
+        return value / LOTTO_UNIT_PRICE;
+    }
 }
